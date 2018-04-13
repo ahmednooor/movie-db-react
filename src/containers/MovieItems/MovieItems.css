@@ -1,0 +1,15 @@
+.MovieItems {
+    padding-top: 80px;
+    width: 100%;
+}
+
+.MovieItems .movie-items-container {
+    width: 100%;
+    /* display: flex;
+    flex-flow: row;
+    flex-direction: row;
+    flex-wrap: wrap; */
+    /* justify-content: left; */
+    text-align: center;
+    padding: 0 10px;
+}
