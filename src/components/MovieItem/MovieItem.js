@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 import './MovieItem.css';
 
 const MovieItem = (props) => {
@@ -10,17 +11,21 @@ const MovieItem = (props) => {
 
     return (
         <div className="MovieItem">
-            <div 
-                className="movie-thumbnail"
-                style={{
-                    backgroundImage: 'url(' + props.thumbnailUrl + ')'
-                }}
-                onClick={(event) => props.showMovieDetailsHandler(event, props.id)}
+            <Link to={"/movie/" + props.id}>
+                <div 
+                    className="movie-thumbnail"
+                    style={{
+                        backgroundImage: 'url(' + props.thumbnailUrl + ')'
+                    }}
+                    // onClick={(event) => props.showMovieDetailsHandler(event, props.id)}
                 ></div>
-            <p 
-                className="movie-title"
-                onClick={(event) => props.showMovieDetailsHandler(event, props.id)}
-            >{props.title}</p>
+            </Link>
+            <Link to={"/movie/" + props.id}>
+                <p 
+                    className="movie-title"
+                    // onClick={(event) => props.showMovieDetailsHandler(event, props.id)}
+                >{props.title}</p>
+            </Link>
             <p className="movie-genre">{genres}</p>
         </div>
     );

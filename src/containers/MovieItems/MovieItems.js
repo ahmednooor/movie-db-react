@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './MovieItems.css';
 
-
 import MovieItem from '../../components/MovieItem//MovieItem';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import Pagination from '../../components/Pagination/Pagination';
@@ -32,7 +31,7 @@ class MovieItems extends Component {
         DB: DB,
         movies: DB.movies,
         moviesPerPage: moviesPerPage,
-        currentPage: 1,
+        currentPage: this.props.match.params.pagenum ? Number(this.props.match.params.pagenum) : 1,
         totalPages: 
             (parseInt(DB.movies.length / moviesPerPage, 10) === DB.movies.length / moviesPerPage ?
                 parseInt(DB.movies.length / moviesPerPage, 10) :
@@ -65,7 +64,15 @@ class MovieItems extends Component {
         this.setState({currentPage: pageNum});
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.match.params.pagenum
+                && this.state.currentPage !== Number(nextProps.match.params.pagenum)) {
+            this.setState({currentPage: Number(nextProps.match.params.pagenum)})
+        }
+    }
+
     render() {
+        console.log(this.props);
         const movies = this.state.movies.map((movie) => {
             return (
                 <MovieItem 
@@ -104,6 +111,7 @@ class MovieItems extends Component {
             </main>
         );
     }
+
 }
 
 export default MovieItems;

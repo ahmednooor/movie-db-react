@@ -4,6 +4,11 @@ import './App.css';
 import MovieItems from './containers/MovieItems/MovieItems';
 import NavBar from './components/NavBar/NavBar';
 import MovieDetails from './components/MovieDetails/MovieDetails';
+import {
+	HashRouter,
+	Route,
+	Switch
+  } from 'react-router-dom';
 
 import DB from './assets/js/db';
 
@@ -79,21 +84,26 @@ class App extends Component {
 
 	render() {
 		return (
+			<HashRouter>
 			<div className="App">
 				<NavBar 
 					visible={this.state.showSideMenu}
 					showSideMenuHandler={this.showSideMenu}
 					closeSideMenuHandler={this.closeSideMenu}
 				/>
-				<MovieDetails
+					<Route path="/" exact component={MovieItems} />
+					<Route path="/:pagenum" exact component={MovieItems} />
+					<Route path="/movie/:id" exact component={MovieDetails} />
+				{/* <MovieDetails
 					visible={this.state.showMovieDetails}
 					movie={this.state.movie}
 					closeMovieDetailsHandler={this.closeMovieDetails}
-				/>
-				<MovieItems 
+				/> */}
+				{/* <MovieItems 
 					showMovieDetailsHandler={this.showMovieDetails}
-				/>
+				/> */}
 			</div>
+			</HashRouter>
 		);
 	}
 
